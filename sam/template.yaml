@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Tasks REST API Service
 
@@ -8,10 +8,10 @@ Globals:
     Timeout: 3
   Api:
     Cors:
-      AllowMethods: "'*'"
-      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'"
-      AllowOrigin: "'*'"
-      AllowCredentials: "'*'"
+      AllowMethods: '''*'''
+      AllowHeaders: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'''
+      AllowOrigin: '''*'''
+      AllowCredentials: '''*'''
 
 Resources:
   # Create DynamoDB table
@@ -19,15 +19,15 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: "user"
-          AttributeType: "S"
-        - AttributeName: "id"
-          AttributeType: "S"
+        - AttributeName: user
+          AttributeType: S
+        - AttributeName: id
+          AttributeType: S
       KeySchema:
-        - AttributeName: "user"
-          KeyType: "HASH"
-        - AttributeName: "id"
-          KeyType: "RANGE"
+        - AttributeName: user
+          KeyType: HASH
+        - AttributeName: id
+          KeyType: RANGE
       BillingMode: PAY_PER_REQUEST
 
   # Create REST API
@@ -178,19 +178,19 @@ Resources:
   UploadsBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "uploads-${AWS::StackName}-${AWS::Region}-${AWS::AccountId}"
+      BucketName: !Sub uploads-${AWS::StackName}-${AWS::Region}-${AWS::AccountId}
       VersioningConfiguration:
         Status: Enabled
       CorsConfiguration:
         CorsRules:
           - AllowedHeaders:
-              - "*"
+              - '*'
             AllowedMethods:
               - GET
               - PUT
               - HEAD
             AllowedOrigins:
-              - "*"
+              - '*'
       BucketEncryption:
         ServerSideEncryptionConfiguration:
           - ServerSideEncryptionByDefault:
@@ -199,7 +199,7 @@ Resources:
 Outputs:
   TasksApi:
     Description: API Gateway endpoint URL
-    Value: !Sub "https://${TasksApi}.execute-api.${AWS::Region}.amazonaws.com/v1/"
+    Value: !Sub https://${TasksApi}.execute-api.${AWS::Region}.amazonaws.com/v1/
   S3BucketName:
     Description: S3 bucket for file uploads
     Value: !Ref UploadsBucket
