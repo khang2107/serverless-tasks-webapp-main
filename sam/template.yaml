@@ -40,6 +40,28 @@ Resources:
             FunctionArn: !GetAtt MyAuthFunction.Arn
       StageName: v1
 
+  # CreateTask Lamda function
+  CreateTaskFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handlers/createTask
+      Handler: app.handler
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref TasksTable
+      Environment:
+        Variables:
+          TASKS_TABLE: !Ref TasksTable
+      Events:
+        PostTaskFunctionApi:
+          Type: Api
+          Properties:
+            RestApiId: !Ref TasksApi
+            Path: /tasks
+            Method: POST
+            Auth:
+              Authorizer: MyLambdaTokenAuthorizer
+
   # Create Lambda functions
   MyAuthFunction:
     Type: AWS::Serverless::Function
