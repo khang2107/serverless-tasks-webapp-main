@@ -1,0 +1,15 @@
+CloudFormation outputs from deployed stack
+--------------------------------------------------------------
+Outputs                                                                                                                                                                                      
+--------------------------------------------------------------
+Key                 TasksApi
+Description         API Gateway endpoint URL                                                                    
+Value               https://r2k7hp11p5.execute-api.ap-southeast-2.amazonaws.com/v1/
+
+Key                 S3BucketName
+Description         S3 bucket for file uploads
+Value               uploads-khang-lambdaproj-tasks-app-ap-southeast-2-564713677658
+--------------------------------------------------------------
+
+
+Successfully created/updated stack - khang-lambdaproj-tasks-app in ap-southeast-2
