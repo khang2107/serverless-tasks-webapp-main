@@ -1,4 +1,4 @@
-CloudFormation outputs from deployed stack
+# CloudFormation outputs from deployed stack
 --------------------------------------------------------------
 Outputs                                                                                                                                                                                      
 --------------------------------------------------------------
@@ -13,3 +13,14 @@ Value               uploads-khang-lambdaproj-tasks-app-ap-southeast-2-5647136776
 
 
 Successfully created/updated stack - khang-lambdaproj-tasks-app in ap-southeast-2
+
+
+# Deploying the web app
+
+$ amplify publish
+https://dev.d3u5jmgw6980i5.amplifyapp.com
+
+
+$ amplify console
+https://dev.d3u5jmgw6980i5.amplifyapp.com
+
