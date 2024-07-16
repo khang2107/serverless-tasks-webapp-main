@@ -10,7 +10,11 @@ export const handler = function (event, context, callback) {
 		} else {
 			console.log(`Verified token: ${verifiedJwt}`);
 			const resource = `${event.methodArn.split("/", 2).join("/")}/*`;
-			const policy = generatePolicy(verifiedJwt.body.sub, "Allow", resource);
+			const policy = generatePolicy(
+				verifiedJwt.body.sub,
+				"Allow",
+				resource
+			);
 			console.log(`Generated policy: ${JSON.stringify(policy)}`);
 			callback(null, policy);
 		}

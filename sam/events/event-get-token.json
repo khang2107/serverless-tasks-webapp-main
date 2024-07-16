@@ -1,4 +1,4 @@
 {
-  "body": "{\"username\": \"johndoe\"}",
-  "httpMethod": "POST"
+	"body": "{\"username\": \"johndoe\"}",
+	"httpMethod": "POST"
 }
