@@ -62,6 +62,32 @@ Resources:
                         Auth:
                             Authorizer: MyLambdaTokenAuthorizer
 
+    # DetectLables Lambda Function
+    DetectLabelsFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            CodeUri: src/handlers/detectLabels
+            Environment:
+                Variables:
+                    TASKS_TABLE: !Ref TasksTable
+            Events:
+                # Trigger Lambda function when a new object is uploaded to S3
+                ObjectCreatedEvent:
+                    Type: S3
+                    Properties:
+                        Bucket: !Ref UploadsBucket
+                        Events: s3:ObjectCreated:*
+            Handler: app.handler
+            Policies:
+                - DynamoDBCrudPolicy:
+                      TableName: !Ref TasksTable
+                - RekognitionDetectOnlyPolicy: {}
+                - Version: 2012-10-17
+                  Statement:
+                      - Effect: Allow
+                        Action: s3:GetObject*
+                        Resource: !Sub "arn:aws:s3:::uploads-${AWS::StackName}-${AWS::Region}-${AWS::AccountId}*"
+
     # Create Lambda functions
     MyAuthFunction:
         Type: AWS::Serverless::Function
